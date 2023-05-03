@@ -1,3 +1,5 @@
+
+
 const path = require("path");
 const express = require("express");
 const app = express();
@@ -6,8 +8,14 @@ const hostname = "127.0.0.1";
 
 app.use(express.static("public"));
 
+
+
+app.engine('handlebars', engine());
+app.set('view engine', 'handlebars');
+app.set('views', './views');
+
 app.get("/", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./site/index.html"));
+  res.render('site2/index');
 });
 app.get("/about", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./site/about.html"));
